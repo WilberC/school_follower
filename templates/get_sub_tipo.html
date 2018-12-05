@@ -1,0 +1,20 @@
+{% extends 'get_tipo.html' %}
+{% block tittle %}Seleccionar Sub Tipo Colegio{% endblock %}
+{% block contenido %}
+    <div class="container" align="center">
+        {% for sub_tipo in get_sub_tipo %}
+            <form method="post">
+                {% csrf_token %}
+                <div class="well">
+                    <div class="form-group">
+                        <label class="col-md-4 control-label" for="singlebutton"></label>
+                        <div class="col-md-4 center-block">
+                            <button type="submit" class="btn btn-primary" value="{{ sub_tipo.0 }}"
+                                    name="sub_tipo">{{ sub_tipo.1 }}</button>
+                        </div>
+                    </div>
+                </div>
+            </form>
+        {% endfor %}
+    </div>
+{% endblock %}

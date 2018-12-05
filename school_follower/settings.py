@@ -55,7 +55,6 @@ MIDDLEWARE = [
     'django.contrib.auth.middleware.AuthenticationMiddleware',
     'django.contrib.messages.middleware.MessageMiddleware',
     'django.middleware.clickjacking.XFrameOptionsMiddleware',
-    'custom_middleware.current_user.CurrentUserMiddleware',
 ]
 
 ROOT_URLCONF = 'school_follower.urls'
@@ -86,9 +85,9 @@ DATABASES = {
     'default': {
         'ENGINE': 'django.db.backends.postgresql',
         'NAME': 'school_follower',
-        'USER': 'postgres',
+        'USER': 'tester',
         'PASSWORD': '1234',
-        'HOST': 'localhost',
+        'HOST': '54.94.215.114',
         'PORT': '5432',
     }
 }
