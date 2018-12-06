@@ -18,6 +18,7 @@ class Colegios(models.Model):
     user = models.OneToOneField(User, on_delete=models.DO_NOTHING, related_name='user_creation', default=request_user)
     tipo = models.IntegerField(choices=TIPO_CHOICES, null=True, blank=True)
     sub_tipo = models.IntegerField(choices=SUB_TIPO_CHOICES, null=True, blank=True)
+    nombre_colegio = models.CharField(max_length=1000, null=True, blank=True)
     provincia = models.CharField(max_length=300, null=True, blank=True)
     direccion = models.CharField(max_length=600, null=True, blank=True)
     referencia = models.CharField(max_length=300, null=True, blank=True)
@@ -27,12 +28,12 @@ class Colegios(models.Model):
     nombre_secretaria = models.CharField(max_length=500, null=True, blank=True)
     contacto_extra = models.CharField(max_length=500, null=True, blank=True)
 
-    def save(self, *args, **kwargs):
-        if self.sub_tipo == 1 or self.sub_tipo == 2:
-            self.tipo = 1
-        else:
-            self.tipo = 2
-        super(Colegios, self).save(*args, **kwargs)
+    # def save(self, *args, **kwargs):
+    #     if self.sub_tipo == 1 or self.sub_tipo == 2:
+    #         self.tipo = 1
+    #     else:
+    #         self.tipo = 2
+    #     super(Colegios, self).save(*args, **kwargs)
 
     class Meta:
         managed = True

@@ -17,12 +17,13 @@ from django.conf.urls import url
 from django.contrib import admin
 from django.urls import path
 
-from colegios.views import ListaTipos, ListaSubTipos, ListaColegios
+from colegios.views import *
 
 urlpatterns = [
     path('admin/', admin.site.urls),
     url(r'^$', ListaTipos.as_view(), name='list_tipo'),
     url(r'^sub_tipos/$', ListaSubTipos.as_view(), name='list_sub_tipo'),
     url(r'^lista_colegios/$', ListaColegios.as_view(), name='list_cole'),
+    url(r'^crear_colegios/$', CreateColegios.as_view(), name='create_cole'),
 
 ]

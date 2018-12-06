@@ -3,22 +3,56 @@
 {% block contenido %}
     <div class="container" align="center">
         <br>
+        <div align="left">
+            <button type="button" class="btn btn-success" onclick="location.href={% url '' %};">
+                Crear Colegio
+            </button>
+        </div>
+        <br>
         <table class="table table-sm">
             <thead>
             <tr>
                 <th scope="col">#</th>
-                <th scope="col">First</th>
-                <th scope="col">Last</th>
-                <th scope="col">Handle</th>
+                <th scope="col">Nombre del Colegio</th>
+                <th scope="col">Dirección</th>
+                <th scope="col">Provincia</th>
+                <th scope="col">Referencia</th>
+                <th scope="col">Teléfono</th>
+                <th scope="col">Acciones</th>
             </tr>
             </thead>
             <tbody>
             <tr>
-                <th scope="row">1</th>
-                <td>Mark</td>
-                <td>Otto</td>
-                <td>@mdo</td>
+                <th scope="row"></th>
+                <td scope="col"></td>
+                <td scope="col"></td>
+                <td scope="col"></td>
+                <td scope="col"></td>
+                <td scope="col"></td>
+                <td scope="col"></td>
             </tr>
+            {% for cole in colegios %}
+                <tr>
+                    <th scope="row">{{ forloop.counter }}</th>
+                    <td scope="col">{{ cole.nombre_colegio }}</td>
+                    <td scope="col">{{ cole.direccion }}</td>
+                    <td scope="col">{{ cole.provincia }}</td>
+                    <td scope="col">{{ cole.referencia }}</td>
+                    <td scope="col">{{ cole.telefono }}</td>
+                    <td scope="col">
+                        <form method="post">
+                            {% csrf_token %}
+                            <button type="submit" class="btn btn-info" name="info_pk" value="{{ cole.pk }}">
+                                Información
+                            </button>
+                        </form>
+                    </td>
+                </tr>
+            {% empty %}
+                <tr>
+                    <td colspan="7" align="middle">No se encontrarón datos</td>
+                </tr>
+            {% endfor %}
             </tbody>
         </table>
     </div>
