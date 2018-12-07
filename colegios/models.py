@@ -13,7 +13,7 @@ class Colegios(models.Model):
         (3, 'Cuentan con Sistema'),
         (4, 'No Cuentan con Sistema')
     ]
-    user = models.OneToOneField(User, on_delete=models.DO_NOTHING, related_name='user_creation')
+    user = models.ForeignKey(User, on_delete=models.DO_NOTHING, related_name='user_creation')
     tipo = models.IntegerField(choices=TIPO_CHOICES, null=True, blank=True)
     sub_tipo = models.IntegerField(choices=SUB_TIPO_CHOICES, null=True, blank=True)
     nombre_colegio = models.CharField(max_length=1000, null=True, blank=True)
