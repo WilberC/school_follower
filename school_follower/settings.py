@@ -144,3 +144,5 @@ ACCOUNT_AUTHENTICATION_METHOD = 'username_email'
 ACCOUNT_AUTHENTICATED_LOGIN_REDIRECTS = False
 # --------------
 EMAIL_BACKEND = 'django.core.mail.backends.console.EmailBackend'
+# --------------
+LOGIN_REDIRECT_URL = 'list_tipo'
