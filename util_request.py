@@ -10,4 +10,5 @@ def get_current_request():
 def request_user():
     request = get_current_request()
     if request:
+        print(str(request.user.id))
         return getattr(request, "user", None)

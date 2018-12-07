@@ -1,8 +1,6 @@
 from django.db import models
 from django.contrib.auth.models import User
 
-from util_request import request_user
-
 
 class Colegios(models.Model):
     TIPO_CHOICES = [
@@ -15,7 +13,7 @@ class Colegios(models.Model):
         (3, 'Cuentan con Sistema'),
         (4, 'No Cuentan con Sistema')
     ]
-    user = models.OneToOneField(User, on_delete=models.DO_NOTHING, related_name='user_creation', default=request_user)
+    user = models.OneToOneField(User, on_delete=models.DO_NOTHING, related_name='user_creation')
     tipo = models.IntegerField(choices=TIPO_CHOICES, null=True, blank=True)
     sub_tipo = models.IntegerField(choices=SUB_TIPO_CHOICES, null=True, blank=True)
     nombre_colegio = models.CharField(max_length=1000, null=True, blank=True)

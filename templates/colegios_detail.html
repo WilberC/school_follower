@@ -1,0 +1,110 @@
+{% extends 'get_sub_tipo.html' %}
+{% block tittle %}Update Colegio{% endblock %}
+{% block contenido %}
+    <div class="container" align="center">
+        <br>
+        <div class="row">
+            <div align="left" class="col-sm-6">
+                <button type="button" class="btn btn-success"
+                        onclick="location.href='{% url 'create_actividad' colegios.pk %}';">
+                    Agregar Actividad
+                </button>
+            </div>
+            <div align="right" class="col-sm-6">
+                <button type="button" class="btn btn-warning" onclick="location.href='{% url 'list_tipo' %}';">
+                    Editar Datos
+                </button>
+            </div>
+        </div>
+        <br>
+        <div class="row">
+            <div class="col-sm-8">
+                <table class="table">
+                    <thead>
+                    <tr>
+                        <th scope="col">#</th>
+                        <th scope="col" colspan="2" {% comment %}style="text-align: center"{% endcomment %}>Datos</th>
+                    </tr>
+                    </thead>
+                    <tbody>
+                    <tr>
+                        <th scope="row">1</th>
+                        <th>Nombre Colegio:</th>
+                        <td>{{ colegios.nombre_colegio|default:"" }}</td>
+                    </tr>
+                    <tr>
+                        <th scope="row">2</th>
+                        <th>Tipo:</th>
+                        <td>{{ colegios.get_tipo_display }} - {{ colegios.get_sub_tipo_display }}</td>
+                    </tr>
+                    <tr>
+                        <th scope="row">3</th>
+                        <th>Provincia:</th>
+                        <td>{{ colegios.provincia|default:"" }}</td>
+                    </tr>
+                    <tr>
+                        <th scope="row">4</th>
+                        <th>Dirección:</th>
+                        <td>{{ colegios.direccion|default:"" }}</td>
+                    </tr>
+                    <tr>
+                        <th scope="row">5</th>
+                        <th>Referencia:</th>
+                        <td>{{ colegios.referencia|default:"" }}</td>
+                    </tr>
+                    <tr>
+                        <th scope="row">6</th>
+                        <th>Teléfono:</th>
+                        <td>{{ colegios.telefono|default:"" }}</td>
+                    </tr>
+                    <tr>
+                        <th scope="row">7</th>
+                        <th>Nombre del Promotor:</th>
+                        <td>{{ colegios.nombre_promotor|default:"" }}</td>
+                    </tr>
+                    <tr>
+                        <th scope="row">8</th>
+                        <th>Nombre del Director:</th>
+                        <td>{{ colegios.nombre_director|default:"" }}</td>
+                    </tr>
+                    <tr>
+                        <th scope="row">9</th>
+                        <th>Nombre del Secretaria:</th>
+                        <td>{{ colegios.nombre_secretaria|default:"" }}</td>
+                    </tr>
+                    <tr>
+                        <th scope="row">10</th>
+                        <th>Contacto Extra:</th>
+                        <td>{{ colegios.contacto_extra|default:"" }}</td>
+                    </tr>
+                    </tbody>
+                </table>
+            </div>
+            <div class="col-sm-4">
+                <table class="table">
+                    <thead>
+                    <tr>
+                        <th scope="col">#</th>
+                        <th scope="col" colspan="5">Lista de Actividades</th>
+                    </tr>
+                    </thead>
+                    <tbody>
+                    {% for actividad in actividades %}
+                        <tr>
+                            <th scope="row">{{ forloop.revcounter }}</th>
+                            <th>Observación:</th>
+                            <td>{{ actividad.observaciones_visita|default:"" }}</td>
+                            <th>Fecha:</th>
+                            <td>{{ actividad.fecha_creacion|date:"d/m/Y" }}</td>
+                        </tr>
+                    {% empty %}
+                        <tr>
+                            <td colspan="5" align="middle">No se encontrarón actividades</td>
+                        </tr>
+                    {% endfor %}
+                    </tbody>
+                </table>
+            </div>
+        </div>
+    </div>
+{% endblock %}

@@ -3,10 +3,17 @@
 {% block contenido %}
     <div class="container" align="center">
         <br>
-        <div align="left">
-            <button type="button" class="btn btn-success" onclick="location.href={% url '' %};">
-                Crear Colegio
-            </button>
+        <div class="row">
+            <div align="left" class="col-sm-6">
+                <button type="button" class="btn btn-success" onclick="location.href='{% url 'create_cole' %}';">
+                    Crear Colegio
+                </button>
+            </div>
+            <div align="right" class="col-sm-6">
+                <button type="button" class="btn btn-warning" onclick="location.href='{% url 'list_tipo' %}';">
+                    Seleccionar Tipo
+                </button>
+            </div>
         </div>
         <br>
         <table class="table table-sm">
@@ -34,18 +41,18 @@
             {% for cole in colegios %}
                 <tr>
                     <th scope="row">{{ forloop.counter }}</th>
-                    <td scope="col">{{ cole.nombre_colegio }}</td>
-                    <td scope="col">{{ cole.direccion }}</td>
-                    <td scope="col">{{ cole.provincia }}</td>
-                    <td scope="col">{{ cole.referencia }}</td>
-                    <td scope="col">{{ cole.telefono }}</td>
+                    <td scope="col">{{ cole.nombre_colegio|default:"" }}</td>
+                    <td scope="col">{{ cole.direccion|default:"" }}</td>
+                    <td scope="col">{{ cole.provincia|default:"" }}</td>
+                    <td scope="col">{{ cole.referencia|default:"" }}</td>
+                    <td scope="col">{{ cole.telefono|default:"" }}</td>
                     <td scope="col">
-                        <form method="post">
-                            {% csrf_token %}
-                            <button type="submit" class="btn btn-info" name="info_pk" value="{{ cole.pk }}">
-                                Información
-                            </button>
-                        </form>
+                        <button class="btn btn-info" onclick="location.href='{% url 'detalle_cole' cole.pk %}';">
+                            Información
+                        </button>
+                        <button class="btn btn-dark" onclick="location.href='{% url 'create_actividad' cole.pk %}';">
+                            Agregar Acción
+                        </button>
                     </td>
                 </tr>
             {% empty %}
