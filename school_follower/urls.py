@@ -28,5 +28,5 @@ urlpatterns = [
     url(r'^crear_colegios/$', CreateColegios.as_view(), name='create_cole'),
     url(r'^detalles_colegios/(?P<pk>\d+)$', DetallesColegios.as_view(), name='detalle_cole'),
     url(r'^create_actividad/(?P<pk>\d+)$', CreateActividad.as_view(), name='create_actividad'),
-
+    url(r'^editar_colegio/(?P<pk>\d+)$', ColegioUpdate.as_view(), name='editar_colegio'),
 ]

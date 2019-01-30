@@ -118,3 +118,11 @@ class CreateActividad(CreateView):
         self.object.colegio_id = self.kwargs['pk']
         self.object.save()
         return super(CreateActividad, self).form_valid(form)
+
+
+@method_decorator(login_required, name='dispatch')
+class ColegioUpdate(UpdateView):
+    model = Colegios
+    success_url = reverse_lazy('list_cole')
+    form_class = ColegiosForm
+    template_name = 'update_colegios.html'

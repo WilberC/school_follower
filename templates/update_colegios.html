@@ -1,5 +1,36 @@
 {% extends 'get_sub_tipo.html' %}
-{% block tittle %}Update Colegio{% endblock %}
+{% block tittle %}Crear Colegios{% endblock %}
 {% block contenido %}
-    <h1>Update :v</h1>
+    <div class="container" align="center">
+        <br>
+        <form method="post">
+            {% csrf_token %}
+            <div class="col-sm-4"  align="center">
+                    {{ form.as_p }}
+                    <br>
+                    <button type="submit" class="btn btn-success">Guardar</button>
+                </div>
+        </form>
+        <br>
+    </div>
+    <script>
+        $('#id_tipo').on('change', function () {
+            var val_select = this.value;
+            var my_select = $('#id_sub_tipo');
+            var borar_select = my_select.find("option:gt(0)").remove();
+            if (val_select === '1') {
+                borar_select;
+                {% for cli in clientes %}
+                    my_select.append($("<option></option>").attr("value", "{{ cli.0 }}").text("{{ cli.1 }}"));
+                {% endfor %}
+            } else if (val_select === '2') {
+                borar_select;
+                {% for no_cli in no_clientes %}
+                    my_select.append($("<option></option>").attr("value", "{{ no_cli.0 }}").text("{{ no_cli.1 }}"));
+                {% endfor %}
+            } else {
+                borar_select
+            }
+        });
+    </script>
 {% endblock %}
